@@ -11,7 +11,8 @@
 	],
 	"activationEvents": [
 		"onCommand:depcheck",
-		"onCommand:setConfig"
+		"onCommand:setConfig",
+		"onWebviewPanel:showDeps"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -30,6 +31,12 @@
 				{
 					"command": "depcheck",
 					"group": "1_modification",
+					"when": "isFileSystemResource"
+				}
+			],
+			"scm/resourceState/context": [
+				{
+					"command": "depcheck",
 					"when": "isFileSystemResource"
 				}
 			]

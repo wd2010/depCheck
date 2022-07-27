@@ -1,4 +1,4 @@
-
+import { window } from 'vscode'
 
 export function parseStats(stats: any, filename: string) {
   const moduleArr = stats.modules; //获取模块数据的数组
@@ -13,6 +13,7 @@ export function parseStats(stats: any, filename: string) {
     const targetmodule = moduleObj[filename];
     if (!targetmodule) {
       console.log(`未获取到:${filename}模块`);
+      window.showInformationMessage(`未获取到:${filename}模块的依赖关系`)
       return;
     }
     let isHaveTarget = tree.filter((item: { name: any; }) => {

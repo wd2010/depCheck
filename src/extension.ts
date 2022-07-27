@@ -1,22 +1,31 @@
 // @ts-ignore
 
-import { commands, window } from "vscode";
+import { commands, window, workspace } from "vscode";
 import type { ExtensionContext } from "vscode";
 import { getStats } from "./getStats";
 import { parseStats } from "./parseStats";
 import { setConfigAction } from "./utils/index";
-
-const targetPath = "/Users/viki/Documents/demo/webpack-demo/src/d.js";
-
+import { showDeps } from './showDeps/index';
 export function activate(context: ExtensionContext) {
+
   const setConfig = commands.registerCommand("setConfig", async () => {
     await setConfigAction(context);
   });
 
-  const depcheck = commands.registerCommand("depcheck", async () => {
+  const depcheck = commands.registerCommand("depcheck", async fileUrl => {
+
     const stats = await getStats(context);
-    const pathArr = parseStats(stats, targetPath);
+    
+    const path = fileUrl ? (fileUrl.fsPath || fileUrl.original.fsPath) : window.activeTextEditor.document.uri.fsPath;
+
+    const pathArr = parseStats(stats, path);
+
+    showDeps();
+
+    
   });
+
+  
 
   context.subscriptions.push(setConfig, depcheck);
 }

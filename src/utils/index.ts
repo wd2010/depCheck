@@ -2,11 +2,8 @@ import { window, workspace } from "vscode";
 import { spawnSync } from "child_process";
 
 export const getDir = () => {
-  let dir = __dirname;
-  if (typeof window.createTerminal === "function") {
-    const folders = workspace.workspaceFolders || [];
-    dir = folders[0].uri.fsPath;
-  }
+  const folders = workspace.workspaceFolders;
+  let dir = folders[0].uri.fsPath || __dirname;
 
   if (dir) {
     dir = dir.replace(/\\/g, "\\\\");
