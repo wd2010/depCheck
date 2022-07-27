@@ -10,14 +10,19 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:depcheck"
+		"onCommand:depcheck",
+		"onCommand:setConfig"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "depcheck",
-				"title": "check dependencies"
+				"title": "depcheck 运行依赖检查"
+			},
+			{
+				"command": "setConfig",
+				"title": "setConfig 上传打包配置文件(如webpack.config.js)"
 			}
 		],
 		"menus": {

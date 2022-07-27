@@ -20,6 +20,28 @@ export const runCommand = (
   args: string[],
   cwd: string = getDir()
 ) => {
-    const { stdout } = spawnSync(command, args, { cwd, encoding:'utf-8' });
-    return stdout;
+  const { stdout } = spawnSync(command, args, { cwd, encoding: "utf-8" });
+  return stdout;
+};
+
+export const setConfigAction = async (context) => {
+  const result = await window.showInputBox({
+    title: "温馨提醒",
+    value: "",
+    placeHolder: "请输入你的打包配置的完整路径",
+  });
+
+  context.workspaceState.update("webpackConfigPath", result);
+
+  return result;
+};
+
+export const getConfigAction = async (context) => {
+  let webpackConfigPath = context.workspaceState.get("webpackConfigPath");
+
+  if (!webpackConfigPath) {
+    webpackConfigPath = await setConfigAction(context);
+  }
+
+  return webpackConfigPath;
 };
