@@ -20,7 +20,7 @@ export function activate(context: ExtensionContext) {
 
     const pathArr = parseStats(stats, path);
 
-    showDeps();
+    showDeps({pathArr, fileName:path});
 
     
   });

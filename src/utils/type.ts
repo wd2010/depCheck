@@ -1,5 +1,7 @@
 
 
 export enum PATHS {
-  statsPath = 'stats.json',
+  statsPath = 'dist/stats.json',
 }
+
+

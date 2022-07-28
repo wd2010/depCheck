@@ -1,0 +1,39 @@
+<head>
+  <style>
+    ul {
+      list-style-type: none;
+      font-size: 16px;
+      border: 1px solid red;
+    }
+
+    li {
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>target文件: <a href="javascript:void(0)"><%= fileName %></a></h2>
+
+  <div>
+    <% pathArr.forEach(function(arr){ %>
+      <ul>
+        <% arr.forEach(function(path, index){ %>
+          <li>
+            <span><%= index+1 %>: </span>
+            <a href="javascript:void(0)" onclick="go2File(path)"><%= path %></a>
+          <li>
+        <% }); %>
+      </ul>
+      <% }); %>
+  </div>
+
+
+  
+  <script>
+    const go2File = (path) => {
+      console.log(path)
+    }
+
+  </script>
+</body>
